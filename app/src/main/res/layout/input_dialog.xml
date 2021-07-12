@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/mLinearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/bg_white_radius"
+        android:layout_margin="16dp"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint=""
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="48dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mConfirmButton"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/yes_2"
+        app:fabCustomSize="72dp"
+        app:tint="@android:color/holo_green_light" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mCancelButton"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/no"
+        app:fabCustomSize="72dp"
+        app:tint="@android:color/holo_red_light" />
+    </RelativeLayout>
+
+</LinearLayout>
