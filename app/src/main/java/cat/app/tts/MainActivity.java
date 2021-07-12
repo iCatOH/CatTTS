@@ -19,11 +19,14 @@ import cat.app.tts.ui.BigInputDialog;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BigInputDialog.OnClickListener{
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
+
+    BigInputDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        BigInputDialog dialog = new BigInputDialog(MainActivity.this);
+        dialog = new BigInputDialog(MainActivity.this);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.setOnClickListener(this);
         dialog.show();
     }
 
@@ -70,5 +74,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onCancelButtonClick() {
+        dialog.dismiss();
+    }
+
+    @Override
+    public void onConfirmButtonClick() {
+        Toast.makeText(this,dialog.getInputText(),Toast.LENGTH_LONG).show();
     }
 }

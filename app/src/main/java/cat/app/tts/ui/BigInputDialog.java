@@ -19,6 +19,8 @@ public class BigInputDialog extends Dialog implements View.OnClickListener {
     private FloatingActionButton mConfirmButton;
     private FloatingActionButton mCancelButton;
 
+    public OnClickListener onClickListener;
+
     public BigInputDialog(@NonNull Context context) {
         super(context);
     }
@@ -31,12 +33,34 @@ public class BigInputDialog extends Dialog implements View.OnClickListener {
         mInputEditText = (EditText) findViewById(R.id.mInputEditText);
         mConfirmButton = (FloatingActionButton) findViewById(R.id.mConfirmButton);
         mCancelButton = (FloatingActionButton) findViewById(R.id.mCancelButton);
+        mConfirmButton.setOnClickListener(this);
         mCancelButton.setOnClickListener(this);
 
     }
 
+    public void setOnClickListener(OnClickListener onClick) {
+        this.onClickListener = onClick;
+    }
+
+    public String getInputText() {
+        return mInputEditText.getText().toString();
+    }
+
     @Override
     public void onClick(View v) {
-        this.dismiss();
+        switch (v.getId()) {
+            case R.id.mConfirmButton:
+                onClickListener.onConfirmButtonClick();
+                return;
+            case R.id.mCancelButton:
+                onClickListener.onCancelButtonClick();
+                return;
+        }
     }
+
+    public interface OnClickListener {
+        public void onConfirmButtonClick();
+        public void onCancelButtonClick();
+    }
+
 }
