@@ -1,0 +1,61 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="TTS设置" app:iconSpaceReserved="false">
+
+        <ListPreference
+            app:defaultValue="Auto"
+            app:entries="@array/tts_engine_entries"
+            app:entryValues="@array/tts_engine_values"
+            app:key="tts_engine"
+            app:title="TTS引擎"
+            app:useSimpleSummaryProvider="true"/>
+
+        <ListPreference
+            app:defaultValue="Auto"
+            app:entries="@array/tts_lang_entries"
+            app:entryValues="@array/tts_lang_values"
+            app:key="tts_lang"
+            app:title="TTS语言"
+            app:useSimpleSummaryProvider="true"/>
+
+        <SeekBarPreference
+            android:max="100"
+            app:defaultValue="10"
+            app:key="tts_tone"
+            app:title="语调"/>
+
+        <SeekBarPreference
+            android:max="100"
+            app:defaultValue="10"
+            app:key="tts_speed"
+            app:title="语速"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="主题" app:iconSpaceReserved="false">
+        
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="其他" app:iconSpaceReserved="false">
+        <EditTextPreference
+            app:defaultValue="/mnt/sdcard/CatTTS"
+            app:key="save"
+            app:title="文件保存路径"
+            app:useSimpleSummaryProvider="true"/>
+
+        <ListPreference
+            app:defaultValue="mp3"
+            app:entries="@array/format_entries"
+            app:entryValues="@array/format_values"
+            app:key="format"
+            app:title="文件格式"
+            app:useSimpleSummaryProvider="true"/>
+
+        <SwitchPreference
+            app:key="reader"
+            app:title="启用划词朗读" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

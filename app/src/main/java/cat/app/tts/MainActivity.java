@@ -1,5 +1,7 @@
 package cat.app.tts;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -7,10 +9,12 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -23,10 +27,12 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements BigInputDialog.OnClickListener{
 
+    NavController navController;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
     BigInputDialog dialog;
+    CatAppConfig config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +43,18 @@ public class MainActivity extends AppCompatActivity implements BigInputDialog.On
 
         setSupportActionBar(binding.toolbar);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
+        CatAppConfig.refreshData(this);
+
+        /*
         dialog = new BigInputDialog(MainActivity.this);
         dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setOnClickListener(this);
         dialog.show();
+         */
     }
 
     @Override
@@ -63,7 +73,13 @@ public class MainActivity extends AppCompatActivity implements BigInputDialog.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            navController.navigate(R.id.action_MainFragment_to_SettingsFragment);
+            item.setVisible(false);
             return true;
+        }
+
+        if (id == android.R.id.home) {
+            item.getActionView();
         }
 
         return super.onOptionsItemSelected(item);

@@ -28,6 +28,8 @@
             android:layout_margin="16dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            app:progressColor="@color/blue_500"
+            app:textColor="@color/blue_500"
             app:maxProgress="100"
             app:progressWidth="8dp"
             app:textSize="24sp"
@@ -46,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Hi" />
+                android:text="长按进度圈启用复读" />
 
             <TextView
                 android:id="@+id/mWordsTextViewNow"
@@ -55,7 +57,7 @@
                 android:gravity="center"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:text="hello world!"
+                android:text="长按输入文本"
                 android:textSize="32sp" />
 
             <TextView
@@ -63,47 +65,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Hello" />
+                android:text="再次长按关闭" />
         </LinearLayout>
 
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/imageButton"
+        android:id="@+id/mRepeatButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:contentDescription="Repeat"
         android:src="@drawable/ic_baseline_repeat_24"
-        app:backgroundTint="@color/blue_500"
         app:fabCustomSize="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
         app:layout_constraintVertical_bias="0.05"
-        app:tint="@color/white" />
+        app:tint="@color/white"
+        android:enabled="false"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/mStartButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_start"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintEnd_toStartOf="@id/mRepeatButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
         app:layout_constraintVertical_bias="0.05" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/mStopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintStart_toEndOf="@id/mRepeatButton"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
         app:layout_constraintVertical_bias="0.05" />
 
     <RelativeLayout
@@ -116,17 +118,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.90">
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
+        app:layout_constraintVertical_bias="0.90"
+        android:id="@+id/mRepeatView">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="48sp"
+            android:textSize="36sp"
             android:textColor="@color/black"
             android:layout_centerHorizontal="true"
             android:id="@+id/tmpTextView1"
-            android:text="HI"/>
+            android:text="复读次数"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,10 +148,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/mNumberPickerTen"/>
+
             <NumberPicker
+                android:id="@+id/mNumberPickerOne"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/mNumberPickerOne"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -159,14 +163,15 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.50"
         app:fabCustomSize="56dp"
         app:tint="@color/white"
         android:src="@drawable/ic_play"
-        android:contentDescription="Play"/>
+        android:contentDescription="Play"
+        android:id="@+id/mPlayButton"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="56dp"
@@ -174,14 +179,15 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.60"
         app:fabCustomSize="56dp"
         app:tint="@color/white"
         android:src="@drawable/ic_save"
-        android:contentDescription="Download"/>
+        android:contentDescription="Download"
+        android:id="@+id/mExportButton"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="56dp"
@@ -189,14 +195,15 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.89"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.70"
         app:fabCustomSize="56dp"
         app:tint="@color/white"
         android:src="@drawable/ic_edit"
-        android:contentDescription="Edit"/>
+        android:contentDescription="Edit"
+        android:id="@+id/mEditButton"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="64dp"
@@ -210,5 +217,6 @@
         app:fabCustomSize="64dp"
         app:tint="@color/white"
         android:src="@drawable/add"
-        android:contentDescription="Main"/>
+        android:contentDescription="Main"
+        android:id="@+id/mToggleButton"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
